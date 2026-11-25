@@ -146,13 +146,13 @@ class ScrollStopAccessibilityService : AccessibilityService() {
         lastBlockedType = result.contentType
         lastBlockedTime = now
 
-        // Record the event in the database
+        // Record only minimal non-sensitive metadata (no UI text/signals stored)
         repository.recordBlockEvent(
             BlockEvent(
                 timestamp = now,
                 appPackage = packageName,
                 contentType = result.contentType,
-                detectionSignals = result.signals.joinToString(", ")
+                detectionSignals = ""
             )
         )
 

@@ -113,6 +113,12 @@ class YouTubeShortsDetector {
             repeat(levelSize) {
                 val node = queue.removeFirst()
 
+                // Never inspect password fields or editable text inputs
+                val nodeClass = node.className?.toString() ?: ""
+                if (node.isPassword || nodeClass.contains("EditText", ignoreCase = true)) {
+                    return@repeat
+                }
+
                 // Check text
                 val text = node.text?.toString()?.lowercase() ?: ""
                 val desc = node.contentDescription?.toString()?.lowercase() ?: ""

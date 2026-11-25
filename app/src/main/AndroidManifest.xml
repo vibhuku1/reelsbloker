@@ -2,22 +2,14 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <!-- Required for AccessibilityService -->
-    <uses-permission android:name="android.permission.BIND_ACCESSIBILITY_SERVICE"
-        tools:ignore="ProtectedPermissions" />
-
     <!-- Notifications (Android 13+) -->
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
-
-    <!-- Needed to detect whether YouTube / Instagram are installed (Android 11+) -->
-    <uses-permission android:name="android.permission.QUERY_ALL_PACKAGES"
-        tools:ignore="QueryAllPackagesPermission" />
 
     <!-- Boot completed so we can show a reminder notification -->
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
 
     <queries>
-        <!-- Explicitly declare packages we query on Android 11+ -->
+        <!-- Explicitly declare only the two target packages for install-status checks -->
         <package android:name="com.google.android.youtube" />
         <package android:name="com.instagram.android" />
     </queries>
@@ -52,7 +44,7 @@
             android:theme="@style/Theme.ScrollStop"
             android:taskAffinity="com.scrollstop.blocking" />
 
-        <!-- Accessibility Service -->
+        <!-- Accessibility Service (protected by BIND_ACCESSIBILITY_SERVICE so only the OS can bind) -->
         <service
             android:name=".service.ScrollStopAccessibilityService"
             android:exported="true"
@@ -66,10 +58,10 @@
                 android:resource="@xml/accessibility_service_config" />
         </service>
 
-        <!-- Boot receiver to inform user to re-enable service after restart -->
+        <!-- Boot receiver: exported=false so only system protected broadcasts can trigger it -->
         <receiver
             android:name=".service.BootReceiver"
-            android:exported="true">
+            android:exported="false">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
                 <action android:name="android.intent.action.QUICKBOOT_POWERON" />

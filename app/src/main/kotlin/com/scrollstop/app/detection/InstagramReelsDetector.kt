@@ -119,6 +119,12 @@ class InstagramReelsDetector {
             repeat(levelSize) {
                 val node = queue.removeFirst()
 
+                // Never inspect password fields or editable text inputs (e.g., DMs, search, comments)
+                val nodeClass = node.className?.toString() ?: ""
+                if (node.isPassword || nodeClass.contains("EditText", ignoreCase = true)) {
+                    return@repeat
+                }
+
                 val text = node.text?.toString()?.lowercase() ?: ""
                 val desc = node.contentDescription?.toString()?.lowercase() ?: ""
                 val resId = node.viewIdResourceName?.lowercase() ?: ""
