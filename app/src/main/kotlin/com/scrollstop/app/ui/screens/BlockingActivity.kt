@@ -24,7 +24,7 @@ import com.scrollstop.app.service.ScrollStopAccessibilityService
 import com.scrollstop.app.ui.theme.DarkBackground
 import com.scrollstop.app.ui.theme.ScrollStopDanger
 import com.scrollstop.app.ui.theme.ScrollStopTheme
-import com.scrollstop.app.ui.theme.ThemeMode
+import com.scrollstop.app.model.ThemeMode
 
 /**
  * Blocking screen shown when Shorts or Reels are detected.

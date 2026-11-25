@@ -285,7 +285,7 @@ ScrollStop is designed with privacy as a core requirement:
 - ❌ No messages or passwords accessed
 - ❌ No screen recording
 - ❌ No analytics or advertising
-- ✅ All data stays on your device
+- ✅ All data stays on your device 
 - ✅ Accessibility Service reads only UI structure (not content)
 - ✅ Open about what it does in the accessibility service description
 
