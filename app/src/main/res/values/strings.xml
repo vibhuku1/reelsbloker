@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">ScrollStop</string>
+    <string name="accessibility_service_label">ScrollStop – Shorts &amp; Reels Blocker</string>
+    <string name="accessibility_service_description">ScrollStop uses Accessibility Services to detect when YouTube Shorts or Instagram Reels are opened, and navigates away from them. It does NOT read messages, passwords, or any personal content. All data stays on your device.</string>
+</resources>

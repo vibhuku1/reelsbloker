@@ -1,0 +1,4 @@
+-keep class com.scrollstop.app.** { *; }
+-keep class androidx.room.** { *; }
+-keepattributes *Annotation*
+-dontwarn kotlinx.coroutines.**
