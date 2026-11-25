@@ -7,7 +7,7 @@ data class Statistics(
     val todayReelsBlocked: Int = 0,
     val weekShortsBlocked: Int = 0,
     val weekReelsBlocked: Int = 0,
-    val estimatedMinutesSaved: Int = 0
+    val estimatedMinutesSaved: Int = (totalShortsBlocked + totalReelsBlocked) * 3
 ) {
     val totalBlocked: Int get() = totalShortsBlocked + totalReelsBlocked
     val todayBlocked: Int get() = todayShortsBlocked + todayReelsBlocked
