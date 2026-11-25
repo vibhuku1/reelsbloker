@@ -194,7 +194,7 @@ class ScrollStopAccessibilityService : AccessibilityService() {
         )
         val notification = NotificationCompat.Builder(this, NOTIFICATION_CHANNEL_ID)
             .setSmallIcon(android.R.drawable.ic_dialog_alert)
-            .setContentTitle("ScrollStop – Blocked!")
+            .setContentTitle("ReelStoper – Blocked!")
             .setContentText("${contentType.displayName} blocked. Stay focused! \uD83D\uDCAA")
             .setContentIntent(pendingIntent)
             .setAutoCancel(true)
@@ -211,7 +211,7 @@ class ScrollStopAccessibilityService : AccessibilityService() {
         )
         val notification = NotificationCompat.Builder(this, NOTIFICATION_CHANNEL_ID)
             .setSmallIcon(android.R.drawable.ic_lock_lock)
-            .setContentTitle("ScrollStop is active")
+            .setContentTitle("ReelStoper is active")
             .setContentText("Protecting you from Shorts & Reels")
             .setContentIntent(pendingIntent)
             .setOngoing(true)
@@ -225,10 +225,10 @@ class ScrollStopAccessibilityService : AccessibilityService() {
     private fun createNotificationChannel() {
         val channel = NotificationChannel(
             NOTIFICATION_CHANNEL_ID,
-            "ScrollStop Service",
+            "ReelStoper Service",
             NotificationManager.IMPORTANCE_LOW
         ).apply {
-            description = "ScrollStop accessibility service status"
+            description = "ReelStoper accessibility service status"
             setShowBadge(false)
         }
         val manager = getSystemService(NOTIFICATION_SERVICE) as NotificationManager

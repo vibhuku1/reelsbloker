@@ -3,6 +3,7 @@ package com.scrollstop.app.ui.screens
 import android.content.Intent
 import android.provider.Settings
 import androidx.compose.animation.AnimatedContent
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
@@ -15,10 +16,13 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import com.scrollstop.app.R
 import com.scrollstop.app.ui.theme.ScrollStopSuccess
 import com.scrollstop.app.utils.AccessibilityUtils
 
@@ -107,14 +111,16 @@ private fun OnboardingPage0() {
         verticalArrangement = Arrangement.spacedBy(16.dp),
         modifier = Modifier.padding(16.dp)
     ) {
-        Icon(
-            imageVector = Icons.Default.Shield,
-            contentDescription = null,
-            tint = MaterialTheme.colorScheme.primary,
-            modifier = Modifier.size(80.dp)
+        Image(
+            painter = painterResource(id = R.drawable.reelstoper_logo),
+            contentDescription = "ReelStoper Logo",
+            contentScale = ContentScale.Fit,
+            modifier = Modifier
+                .size(120.dp)
+                .clip(RoundedCornerShape(24.dp))
         )
         Text(
-            "Welcome to\nScrollStop",
+            "Welcome to\nReelStoper",
             style = MaterialTheme.typography.headlineLarge,
             color = MaterialTheme.colorScheme.primary,
             fontWeight = FontWeight.Bold,
@@ -184,7 +190,7 @@ private fun OnboardingPage2(onOpenSettings: () -> Unit) {
             Column(modifier = Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(10.dp)) {
                 SetupStep(step = 1, text = "Tap the button below to open Accessibility Settings")
                 SetupStep(step = 2, text = "Find \"Downloaded apps\" or \"Installed services\"")
-                SetupStep(step = 3, text = "Tap \"ScrollStop - Shorts & Reels Blocker\"")
+                SetupStep(step = 3, text = "Tap \"ReelStoper - Shorts & Reels Blocker\"")
                 SetupStep(step = 4, text = "Toggle it ON and confirm the permission dialog")
                 SetupStep(step = 5, text = "Return to this app and tap \"I enabled it\"")
             }
@@ -199,7 +205,7 @@ private fun OnboardingPage2(onOpenSettings: () -> Unit) {
             Text("Open Accessibility Settings")
         }
         Text(
-            "ScrollStop cannot enable this automatically - Android requires you to do it manually for your privacy.",
+            "ReelStoper cannot enable this automatically - Android requires you to do it manually for your privacy.",
             style = MaterialTheme.typography.bodySmall,
             color = MaterialTheme.colorScheme.onSurfaceVariant,
             textAlign = TextAlign.Center
@@ -226,7 +232,7 @@ private fun OnboardingPage3(context: android.content.Context, onComplete: () -> 
                 textAlign = TextAlign.Center
             )
             Text(
-                "ScrollStop is now protecting you from YouTube Shorts and Instagram Reels.",
+                "ReelStoper is now protecting you from YouTube Shorts and Instagram Reels.",
                 style = MaterialTheme.typography.bodyLarge,
                 textAlign = TextAlign.Center,
                 color = MaterialTheme.colorScheme.onSurface
@@ -242,7 +248,7 @@ private fun OnboardingPage3(context: android.content.Context, onComplete: () -> 
                 textAlign = TextAlign.Center
             )
             Text(
-                "Go back and make sure you enabled the ScrollStop service in Accessibility Settings.",
+                "Go back and make sure you enabled the ReelStoper service in Accessibility Settings.",
                 style = MaterialTheme.typography.bodyLarge,
                 textAlign = TextAlign.Center,
                 color = MaterialTheme.colorScheme.onSurface
@@ -257,7 +263,7 @@ private fun OnboardingPage3(context: android.content.Context, onComplete: () -> 
                 containerColor = if (isEnabled) ScrollStopSuccess else MaterialTheme.colorScheme.primary
             )
         ) {
-            Text(if (isEnabled) "Start Using ScrollStop" else "Continue Anyway")
+            Text(if (isEnabled) "Start Using ReelStoper" else "Continue Anyway")
         }
     }
 }

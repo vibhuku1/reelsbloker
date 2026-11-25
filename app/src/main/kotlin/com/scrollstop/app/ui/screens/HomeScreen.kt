@@ -2,6 +2,7 @@ package com.scrollstop.app.ui.screens
 
 import android.content.Intent
 import android.provider.Settings
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
@@ -14,11 +15,14 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.scrollstop.app.R
 import com.scrollstop.app.ui.theme.ScrollStopDanger
 import com.scrollstop.app.ui.theme.ScrollStopSuccess
 import com.scrollstop.app.viewmodel.MainUiState
@@ -95,16 +99,18 @@ private fun HomeHeader() {
     ) {
         Row(
             verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.spacedBy(8.dp)
+            horizontalArrangement = Arrangement.spacedBy(10.dp)
         ) {
-            Icon(
-                imageVector = Icons.Default.Shield,
-                contentDescription = "ScrollStop",
-                tint = MaterialTheme.colorScheme.primary,
-                modifier = Modifier.size(32.dp)
+            Image(
+                painter = painterResource(id = R.drawable.reelstoper_logo),
+                contentDescription = "ReelStoper Logo",
+                contentScale = ContentScale.Fit,
+                modifier = Modifier
+                    .size(40.dp)
+                    .clip(RoundedCornerShape(10.dp))
             )
             Text(
-                text = "ScrollStop",
+                text = "ReelStoper",
                 style = MaterialTheme.typography.headlineLarge,
                 color = MaterialTheme.colorScheme.primary
             )
@@ -146,7 +152,7 @@ private fun AccessibilityWarningCard(onOpenSettings: () -> Unit) {
                     fontWeight = FontWeight.Bold
                 )
                 Text(
-                    text = "ScrollStop is not protecting you. Enable the accessibility service to start blocking.",
+                    text = "ReelStoper is not protecting you. Enable the accessibility service to start blocking.",
                     style = MaterialTheme.typography.bodySmall,
                     color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.7f)
                 )
@@ -233,7 +239,7 @@ private fun GlobalToggleCard(isEnabled: Boolean, onToggle: (Boolean) -> Unit) {
                 )
                 Column {
                     Text(
-                        text = "ScrollStop",
+                        text = "ReelStoper",
                         style = MaterialTheme.typography.titleMedium,
                         fontWeight = FontWeight.SemiBold
                     )

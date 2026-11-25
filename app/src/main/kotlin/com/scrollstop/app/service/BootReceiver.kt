@@ -35,7 +35,7 @@ class BootReceiver : BroadcastReceiver() {
         val nm = context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
         val channel = NotificationChannel(
             CHANNEL_ID,
-            "ScrollStop Boot Reminder",
+            "ReelStoper Boot Reminder",
             NotificationManager.IMPORTANCE_DEFAULT
         )
         nm.createNotificationChannel(channel)
@@ -49,7 +49,7 @@ class BootReceiver : BroadcastReceiver() {
         )
         val notification = NotificationCompat.Builder(context, CHANNEL_ID)
             .setSmallIcon(android.R.drawable.ic_lock_lock)
-            .setContentTitle("ScrollStop needs your attention")
+            .setContentTitle("ReelStoper needs your attention")
             .setContentText("Tap to re-enable the accessibility service after restart.")
             .setContentIntent(pendingIntent)
             .setAutoCancel(true)

@@ -76,7 +76,7 @@ fun SettingsScreen(viewModel: MainViewModel, uiState: MainUiState) {
         // General section
         SettingsSection(title = "General") {
             SettingsSwitch(
-                label = "Enable ScrollStop",
+                label = "Enable ReelStoper",
                 description = "Master switch for all blocking",
                 icon = Icons.Default.Power,
                 checked = uiState.settings.isEnabled,
@@ -175,7 +175,7 @@ fun SettingsScreen(viewModel: MainViewModel, uiState: MainUiState) {
         ) {
             Column(modifier = Modifier.padding(16.dp)) {
                 Text(
-                    text = "ScrollStop v${BuildConfig.VERSION_NAME}",
+                    text = "ReelStoper v${BuildConfig.VERSION_NAME}",
                     style = MaterialTheme.typography.bodySmall,
                     color = MaterialTheme.colorScheme.onSurfaceVariant
                 )

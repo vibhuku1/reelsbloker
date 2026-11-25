@@ -1,5 +1,6 @@
 package com.scrollstop.app.ui.screens
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -10,9 +11,13 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import com.scrollstop.app.R
 
 @Composable
 fun AboutScreen() {
@@ -48,14 +53,16 @@ fun AboutScreen() {
                 horizontalAlignment = Alignment.CenterHorizontally,
                 verticalArrangement = Arrangement.spacedBy(8.dp)
             ) {
-                Icon(
-                    imageVector = Icons.Default.Shield,
-                    contentDescription = null,
-                    tint = MaterialTheme.colorScheme.primary,
-                    modifier = Modifier.size(56.dp)
+                Image(
+                    painter = painterResource(id = R.drawable.reelstoper_logo),
+                    contentDescription = "ReelStoper Logo",
+                    contentScale = ContentScale.Fit,
+                    modifier = Modifier
+                        .size(84.dp)
+                        .clip(RoundedCornerShape(18.dp))
                 )
                 Text(
-                    text = "ScrollStop",
+                    text = "ReelStoper",
                     style = MaterialTheme.typography.headlineLarge,
                     color = MaterialTheme.colorScheme.primary,
                     fontWeight = FontWeight.Bold
@@ -133,7 +140,7 @@ fun AboutScreen() {
                 Text(
                     text = "• Detection relies on UI accessibility information. If YouTube or Instagram significantly changes their UI, detection may need updating.\n" +
                            "• The Accessibility Service must be manually re-enabled after each device restart — Android requires this for all accessibility services.\n" +
-                           "• ScrollStop aims to avoid false positives. If detection is uncertain, it defaults to safe (no block).",
+                           "• ReelStoper aims to avoid false positives. If detection is uncertain, it defaults to safe (no block).",
                     style = MaterialTheme.typography.bodySmall,
                     color = MaterialTheme.colorScheme.onSurfaceVariant
                 )

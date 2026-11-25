@@ -1,4 +1,4 @@
-name: Build ScrollStop APK
+name: Build ReelStoper APK
 
 on:
   push:
@@ -38,5 +38,5 @@ jobs:
       - name: Upload Debug APK
         uses: actions/upload-artifact@v4
         with:
-          name: ScrollStop-Debug-APK
+          name: ReelStoper-Debug-APK
           path: app/build/outputs/apk/debug/app-debug.apk
