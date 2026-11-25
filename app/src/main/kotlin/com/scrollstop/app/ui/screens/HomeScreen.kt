@@ -23,6 +23,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.scrollstop.app.R
+import com.scrollstop.app.ui.components.AccessibilityDisclosureDialog
 import com.scrollstop.app.ui.theme.ScrollStopDanger
 import com.scrollstop.app.ui.theme.ScrollStopSuccess
 import com.scrollstop.app.viewmodel.MainUiState
@@ -32,6 +33,17 @@ import com.scrollstop.app.viewmodel.MainViewModel
 fun HomeScreen(viewModel: MainViewModel, uiState: MainUiState) {
     val context = LocalContext.current
     val scrollState = rememberScrollState()
+    var showDisclosure by remember { mutableStateOf(false) }
+
+    if (showDisclosure) {
+        AccessibilityDisclosureDialog(
+            onAccept = {
+                showDisclosure = false
+                context.startActivity(Intent(Settings.ACTION_ACCESSIBILITY_SETTINGS))
+            },
+            onDismiss = { showDisclosure = false }
+        )
+    }
 
     Column(
         modifier = Modifier
@@ -45,7 +57,7 @@ fun HomeScreen(viewModel: MainViewModel, uiState: MainUiState) {
         // Accessibility status banner
         if (!uiState.isAccessibilityEnabled) {
             AccessibilityWarningCard {
-                context.startActivity(Intent(Settings.ACTION_ACCESSIBILITY_SETTINGS))
+                showDisclosure = true
             }
         } else {
             ServiceStatusCard(

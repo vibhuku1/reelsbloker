@@ -23,14 +23,26 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.scrollstop.app.R
+import com.scrollstop.app.ui.components.AccessibilityDisclosureDialog
 import com.scrollstop.app.ui.theme.ScrollStopSuccess
 import com.scrollstop.app.utils.AccessibilityUtils
 
 @Composable
 fun OnboardingScreen(onComplete: () -> Unit) {
     var currentPage by remember { mutableStateOf(0) }
+    var showDisclosure by remember { mutableStateOf(false) }
     val context = LocalContext.current
     val totalPages = 4
+
+    if (showDisclosure) {
+        AccessibilityDisclosureDialog(
+            onAccept = {
+                showDisclosure = false
+                context.startActivity(Intent(Settings.ACTION_ACCESSIBILITY_SETTINGS))
+            },
+            onDismiss = { showDisclosure = false }
+        )
+    }
 
     Box(
         modifier = Modifier
@@ -72,7 +84,7 @@ fun OnboardingScreen(onComplete: () -> Unit) {
                     0 -> OnboardingPage0()
                     1 -> OnboardingPage1()
                     2 -> OnboardingPage2(onOpenSettings = {
-                        context.startActivity(Intent(Settings.ACTION_ACCESSIBILITY_SETTINGS))
+                        showDisclosure = true
                     })
                     else -> OnboardingPage3(context = context, onComplete = onComplete)
                 }

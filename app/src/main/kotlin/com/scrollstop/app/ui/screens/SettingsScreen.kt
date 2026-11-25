@@ -17,6 +17,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.scrollstop.app.BuildConfig
 import com.scrollstop.app.model.ThemeMode
+import com.scrollstop.app.ui.components.AccessibilityDisclosureDialog
 import com.scrollstop.app.ui.theme.ScrollStopDanger
 import com.scrollstop.app.ui.theme.ScrollStopSuccess
 import com.scrollstop.app.viewmodel.MainUiState
@@ -27,6 +28,17 @@ fun SettingsScreen(viewModel: MainViewModel, uiState: MainUiState) {
     val context = LocalContext.current
     val scrollState = rememberScrollState()
     var showClearDialog by remember { mutableStateOf(false) }
+    var showDisclosure by remember { mutableStateOf(false) }
+
+    if (showDisclosure) {
+        AccessibilityDisclosureDialog(
+            onAccept = {
+                showDisclosure = false
+                context.startActivity(Intent(Settings.ACTION_ACCESSIBILITY_SETTINGS))
+            },
+            onDismiss = { showDisclosure = false }
+        )
+    }
 
     if (showClearDialog) {
         AlertDialog(
@@ -153,7 +165,7 @@ fun SettingsScreen(viewModel: MainViewModel, uiState: MainUiState) {
                 description = if (uiState.isAccessibilityEnabled) "Enabled \u2713" else "Not enabled - tap to open settings",
                 icon = Icons.Default.Accessibility,
                 labelColor = if (uiState.isAccessibilityEnabled) ScrollStopSuccess else ScrollStopDanger,
-                onClick = { context.startActivity(Intent(Settings.ACTION_ACCESSIBILITY_SETTINGS)) }
+                onClick = { showDisclosure = true }
             )
         }
 
